@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import UserHistory from './UserHistory';
 import Navbar from './components/Navbar';
+import AddCardForm from './components/AddCardForm';
+import Settings from './components/Settings';
 
 interface Card {
   _id: string;
@@ -28,7 +30,7 @@ interface CardRevenue {
 }
 
 function App() {
-  const [currentPage, setCurrentPage] = useState<'main' | 'history'>('main');
+  const [currentPage, setCurrentPage] = useState<'main' | 'history' | 'setting'>('main');
   const [cards, setCards] = useState<Card[]>([]);
   const [usages, setUsages] = useState<Usage[]>([]);
   const [selectedCard, setSelectedCard] = useState('');
@@ -179,16 +181,19 @@ function App() {
       currency: 'THB'
     }).format(amount);
   };
-
   return (
     <div className="app">
       <Navbar currentPage={currentPage} onPageChange={setCurrentPage} />
       <main className="main-content">
         {currentPage === 'history' ? (
           <UserHistory />
+        ) : currentPage === 'setting' ? (
+          <Settings />
         ) : (
           <div className="main-page">
             <h1>ระบบจัดการบัตรสมาชิก</h1>
+
+            
 
             {error && (
               <div className="error-message">

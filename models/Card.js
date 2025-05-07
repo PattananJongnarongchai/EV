@@ -6,6 +6,10 @@ const cardSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
+  icCard: {
+    type: String,
+    require: true
+  },
   isAvailable: {
     type: Boolean,
     default: true

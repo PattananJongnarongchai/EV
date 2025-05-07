@@ -33,7 +33,9 @@ router.get('/', async (req, res) => {
 // Create a new card
 router.post('/', async (req, res) => {
   const card = new Card({
-    cardId: req.body.cardId
+    cardId: req.body.cardId,
+    isAvailable: req.body.isAvailable,
+    currentUser: req.body.currentUser
   });
 
   try {
