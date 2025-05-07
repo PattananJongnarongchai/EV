@@ -32,14 +32,14 @@ Clone โปรเจกต์ bash คัดลอก แก้ไข git clone
 
 📁 โครงสร้างโปรเจกต์ (แนะนำ) bash คัดลอก แก้ไข 
 card-management-app/
-├── client/                # React frontend
+├── client/    # React frontend
 │   ├── src/
 │   │   ├── components/
 │   │   │   ├── AddCardForm.tsx
 │   │   │   └── Settings.tsx
 │   │   ├── App.tsx
 │   │   └── main.tsx
-├── server/                # Express backend
+├── server/    # Express backend
 │   ├── routes/
 │   │   └── cardRoutes.js
 │   ├── models/
