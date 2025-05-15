@@ -6,7 +6,7 @@ const Card = require('../models/Card');
 // Start card usage
 router.post('/start', async (req, res) => {
   try {
-    const card = await Card.findOne({ cardId: req.body.cardId });
+    const card = await Card.findOne({ cardNumber: req.body.cardNumber });
     if (!card) {
       return res.status(404).json({ message: 'ไม่พบบัตรที่ระบุ' });
     }
@@ -15,7 +15,7 @@ router.post('/start', async (req, res) => {
     }
 
     const usage = new Usage({
-      cardId: card._id,
+      cardNumber: card._id,
       memberName: req.body.memberName,
       startDate: new Date(),
       startTime: new Date(),
@@ -51,7 +51,7 @@ router.post('/end/:id', async (req, res) => {
     await usage.save();
 
     // Update card availability
-    const card = await Card.findById(usage.cardId);
+    const card = await Card.findById(usage.cardNumber);
     card.isAvailable = true;
     card.currentUser = null;
     await card.save();
@@ -65,7 +65,7 @@ router.post('/end/:id', async (req, res) => {
 // Get all usage records
 router.get('/', async (req, res) => {
   try {
-    const usages = await Usage.find().populate('cardId');
+    const usages = await Usage.find().populate('cardNumber');
     res.json(usages);
   } catch (err) {
     res.status(500).json({ message: 'เกิดข้อผิดพลาดในการดึงข้อมูลประวัติการใช้งาน' });
